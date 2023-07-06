@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>users</title>
+    <style>
+    #header{
+        background-color: cornflowerblue;
+position:fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+height: 10vh;
+
+        
+    }
+    #header a{
+        color: white;
+text-decoration: none;
+font-size: 4vh;
+border-radius: 10vh;
+background-color: mediumblue;
+padding: 1vh;
+border: 2px solid black;
+    }
+    .card{
+        background-color: black;
+    color: white;
+    height: 42vh;
+    width: 20vw;
+    border-radius: 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    }
+    .card h1{
+        background-color: cornflowerblue;
+    height: 30vh;
+    font-family: sans-serif;
+    display: flex;
+    font-size: 6vh;
+    justify-content: center;
+    align-items: center;
+    width: 19vw;
+    border-radius: 8vh;
+    }
+    .card p{
+        font-size: 3vh;
+    font-family: monospace;
+    }
+    #ladke{
+        text-decoration: none;
+    }
+    #users{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-gap:1vw;
+        padding: 2vw;
+        display: grid;
+    }
+    #addition{
+            background-color: cornflowerblue;
+    height: 10vh;
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+        #addition a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+</style>
+</head>
+<body>
+    <div id="addition">
+        <a href="/visit/requests">Requests</a>
+    </div>
+    <div id="users">
+        {% for us in users %}
+        <a href="/visit/{{us.id}}" id="ladke">
+
+            <div class="card">
+                
+                <h1>{{us.name}}</h1>
+                <p>{{us.about}}</p>
+            </div>
+        </a>
+        {% endfor %}
+
+
+    </div>
+    <div id="header">
+        <a href="/visit/feed">Feed</a>
+        <a href="/visit/users">Users</a>
+        <a href="/visit/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>

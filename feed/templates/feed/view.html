@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.name}}</title>
+    <style>
+        *{
+            color: white;
+        }
+        #heading{
+            background-color: black;
+            height: 35vh;
+            border-radius: 5vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:space-evenly;
+        }
+        #heading h1{
+            font-family: system-ui;
+            font-size: 9vh;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+            width: 100%;
+            display: flex;
+        }
+        #about p{
+            /* background-color: brown; */
+    display: flex;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-content: flex-end;
+        }
+        #header{
+            background-color: cornflowerblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+
+            
+        }
+        #header a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        .add{
+            /* background-color: aqua; */
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .add_label{
+            /* background-color: blueviolet; */
+            color: black;
+            background-color: blueviolet;
+            background-color: white;
+            font-size: 2vh;
+            font-family: sans-serif;
+            border: 2px solid gray;
+        }
+        .submit{
+            color: black;
+            background-color: white;
+            border: 2px solid gray;
+        }
+        .submit:hover{
+            color: white;
+            background-color: black;
+        }
+        .post{
+            background-color: black;
+    color: white;
+    height: 50vh;
+    display: flex;
+    width: 20vw;
+    flex-direction: column;
+        }
+        .img{
+            height: 35vh;
+    width: 41vh;
+    display: flex;
+    background-color: greenyellow;
+    align-items: center;
+    justify-content: center;
+        }
+        .caption{
+            height: 10vh;
+    width: 41vh;
+    display: flex;
+    background-color: black;
+    border-radius: 5vh;
+    justify-content: center;
+    font-size: 2.5vh;
+    align-items: center;
+    color: white;
+        }
+       
+        .post_img{
+            height: 35vh;
+    width: 41vh;
+        }
+        #cont{
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-gap:1vw;
+        padding: 2vw;
+        display: grid;
+        }
+        #pvt_warn{
+            color: black;
+    font-size: 5vh;
+    position: absolute;
+    left: 41%;
+    top: 55%;
+        }
+        #comments{
+            background-color: antiquewhite;
+    color: black;
+    padding: 0.5vh;
+    border-radius: 2vh;
+    text-decoration: none;
+        }
+        #heading{
+            color: white;
+            background-color: black;
+            height: 50vh;
+            border-radius: 5vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:space-evenly;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+        }
+        #heading h1{
+            color: white;
+            font-family: system-ui;
+            font-size: 9vh;
+        }
+        #primg{
+            height: 45vh;
+    width: 50vh;
+    position: absolute;
+    left: 5vh;
+    top: 3vh;
+    align-self: baseline;
+        }
+        .add{
+            /* background-color: aqua; */
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .add_label{
+            /* background-color: blueviolet; */
+            color: black;
+            background-color: blueviolet;
+            background-color: white;
+            font-size: 2vh;
+            font-family: sans-serif;
+            border: 2px solid gray;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+            width: 100%;
+            display: flex;
+        }
+        #about p{
+            /* background-color: brown; */
+    display: flex;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading"><h1>{{user.name}}</h1>
+        <img src="{{user.pic}}" alt="" id="primg">
+        <div id="about">
+
+            <p >{{user.about}}</p>
+            {% if check == False %}
+            <form method="post" class="add">
+                {% csrf_token %}
+                <label for="add{{user.id}}" class="add_label">ADD FRIEND</label>
+                <input type="checkbox" name="add{{user.id}}", value="clicked">
+                {% if check2 is False %}
+                <label for="block{{user.id}}" class="add_label">BLOCK</label>
+                <input type="checkbox" name="block{{user.id}}", value="clicked">
+                {% else %}
+                <label for="unblock{{user.id}}" class="add_label">UNBLOCK</label>
+                <input type="checkbox" name="unblock{{user.id}}", value="clicked">
+                {% endif %}
+                <button type="submit" class="submit">Submit</button>
+            </form>
+            {% else %}
+            <form method="post" class="add">
+                {% csrf_token %}
+                <label for="delete{{user.id}}" class="add_label">Unfollow</label>
+                <input type="checkbox" name="delete{{user.id}}", value="clicked">
+                {% if check2 is False %}
+                <label for="block{{user.id}}" class="add_label">BLOCK</label>
+                <input type="checkbox" name="block{{user.id}}", value="clicked">
+                {% else %}
+                <label for="unblock{{user.id}}" class="add_label">UNBLOCK</label>
+                <input type="checkbox" name="unblock{{user.id}}", value="clicked">
+                {% endif %}
+                <button type="submit" class="submit">Submit</button>
+            </form>
+
+            {% endif %}
+        </div>
+</div>
+<div id="cont">
+<p></p>
+    {% if check == True %}
+    {% for ps in posts %}
+    <div class="post">
+        <div class="img"><img src="{{ps.photo}}" alt="" class="post_img"></div>
+        <div class="caption"><p>{{ps.caption}}</p></div>
+        <a id="comments" href="/visit/cmt{{ps.id}}">COMMENTS</a>
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1 id="pvt_warn">Private Account🔐</h1>
+    {% endif %}
+</div>
+    <div id="header">
+        <a href="/visit/feed">Feed</a>
+        <a href="/visit/users">Users</a>
+        <a href="/visit/profile">Profile</a>
+        <a href="/visit/input">input</a>
+        <a href="/logout">Logout</a>
+    </div>
+  
+</body>
+</html>

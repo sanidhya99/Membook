@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.name}}</title>
+    <style>
+        *{
+            color: white;
+        }
+        #heading{
+            background-color: black;
+            height: 35vh;
+            border-radius: 5vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:space-evenly;
+        }
+        #heading h1{
+            font-family: system-ui;
+            font-size: 9vh;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+            width: 100%;
+            display: flex;
+        }
+        #about p{
+            /* background-color: brown; */
+    display: flex;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-content: flex-end;
+        }
+        #header{
+            background-color: cornflowerblue;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+
+            
+        }
+        #header a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        .add{
+            /* background-color: aqua; */
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .add_label{
+            /* background-color: blueviolet; */
+            color: black;
+            background-color: blueviolet;
+            background-color: white;
+            font-size: 2vh;
+            font-family: sans-serif;
+            border: 2px solid gray;
+        }
+        .submit{
+            color: black;
+            background-color: white;
+            border: 2px solid gray;
+        }
+        .submit:hover{
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading"><h1>{{user.name}}</h1>
+        <div id="about">
+
+            <p >{{user.about}}</p>
+            
+            <form method="post" class="add">
+                {% csrf_token %}
+                <label for="fr" class="add_label">ADD FRIEND</label>
+                <input type="checkbox" name="c{{user.email}}",name="fr", value="clicked">
+                <button type="submit" class="submit">Submit</button>
+            </form>
+        </div>
+</div>
+    <div id="header">
+        <a href="/visit/feed">Feed</a>
+        <a href="/visit/users">Users</a>
+        <a href="/visit/profile">Profile</a>
+        <a href="/visit/input">input</a>
+        <a href="/logout">Logout</a>
+    </div>
+  
+</body>
+</html>

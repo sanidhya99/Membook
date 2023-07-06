@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <style>
+        #cmtfrm{
+            background-color: grey;
+    
+    
+    font-family: sans-serif;
+        }
+        #cmtfrmlbl{
+            background-color: grey;
+    font-weight: 1700;
+    font-size: 2.5vh;
+    height: 5vh;
+    font-family: sans-serif;
+    display: flex;
+    
+    align-items: center;
+    border-bottom: 2px solid black;
+   
+        }
+        #cmt_for{
+            background-color: black;
+    color: #FFC107;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2vh;
+}
+#comments{
+    background-color: grey; 
+    height: max-content;
+    display: grid;
+    
+    grid-template-columns: 12fr;
+    grid-template-rows: max-content;
+            padding: 1vh;
+            grid-gap:2vh;
+        }
+        #cmthd{
+            /* font-size: 3vh; */
+    background-color: grey;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 5vh;
+    margin-left: 1vh;
+
+        }
+        .cts{
+            background-color: black;
+    border: 5px solid #FFC107;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 2vh;
+    border-radius: 3.5vh;
+
+        }
+        #sender{
+            font-size: 2.5vh;
+    font-family: system-ui;
+    color: antiquewhite;
+    margin-bottom: 1vh;
+    border-bottom: 2px solid antiquewhite;
+    text-decoration: none;
+        }
+        #txt{
+            color: #FFC107;
+    font-size: 2.3vh;
+    letter-spacing: 0.1vh;
+    height: max-content;
+        }
+        #revert{
+            background-color: black;
+    color: #FFC107;
+    margin-top: 1vh;
+    height: 4vh;
+    width: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 2.5vh;
+    border: 4px solid #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <div id="cmtfrm">
+
+        <label for="cmt_for" id="cmtfrmlbl">Add Comments</label>
+        <form method="post" id="cmt_for">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">post</button>
+        </form>
+    </div>
+<div id="comments">
+    {% if check is True %}
+    <p id=" cmthd">Comments</p>
+    {% for cmt in comments %}
+    <div class="cts">
+      
+    <a id="sender" href="/visit/{{cmt.author.id}}" >{{cmt.author}}</a>
+        <div id="txt">{{cmt.text}}</div>
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>NO COMMENTS YET</h1>
+    {% endif %}
+    <a href="/visit/profile" id="revert">posts</a>
+</div>
+</body>
+</html>

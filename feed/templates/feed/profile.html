@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <style>
+        
+        #heading{
+            color: white;
+            background-color: black;
+            height: 50vh;
+            border-radius: 5vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:space-evenly;
+        }
+        #cont{
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-gap:1vw;
+            padding: 2vw;
+            display: grid;
+        }
+        #heading h1{
+            color: white;
+            font-family: system-ui;
+            font-size: 9vh;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+        }
+        #header{
+            background-color: cornflowerblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+
+            
+        }
+        #header a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        .post{
+            background-color: black;
+    color: white;
+    height: 50vh;
+    display: flex;
+    width: 20vw;
+    flex-direction: column;
+    align-items: center;
+        }
+        .img{
+            height: 35vh;
+    width: 41vh;
+    display: flex;
+    background-color: greenyellow;
+    align-items: center;
+    justify-content: center;
+        }
+        .caption{
+            height: 10vh;
+    width: 41vh;
+    display: flex;
+    background-color: black;
+    border-radius: 5vh;
+    justify-content: center;
+    font-size: 2.5vh;
+    align-items: center;
+    color: white;
+        }
+       
+        .post_img{
+            height: 35vh;
+    width: 41vh;
+        }
+        .add{
+            /* background-color: aqua; */
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .add_label{
+            /* background-color: blueviolet; */
+            color: black;
+            background-color: blueviolet;
+            background-color: white;
+            font-size: 2vh;
+            font-family: sans-serif;
+            border: 2px solid gray;
+        }
+        #about{
+            font-size: 3vh;
+            font-family: cursive;
+            width: 100%;
+            display: flex;
+        }
+        #about p{
+            /* background-color: brown; */
+    display: flex;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    justify-content: flex-end;
+        }
+        .submit{
+            color: black;
+            background-color: white;
+            border: 2px solid gray;
+            margin-right: 2vh;
+        }
+        .submit:hover{
+            color: white;
+            background-color: black;
+        }
+        #primg{
+            height: 45vh;
+    width: 50vh;
+    position: absolute;
+    left: 5vh;
+    top: 3vh;
+    align-self: baseline;
+        }
+        #comments{
+            background-color: antiquewhite;
+    color: black;
+    padding: 0.5vh;
+    border-radius: 2vh;
+    text-decoration: none;
+        }
+        #com_frm{
+            display: flex;
+            flex-direction: row;
+            background-color: cadetblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading"><h1>{{person.name}}</h1>
+        <img src="{{person.pic}}" alt="" id="primg">
+        <div id="about">
+
+            <p >{{person.about}}
+                
+            </p>
+                <a class="add" href="/visit">
+                    
+                    
+                    <button  class="submit">Home</button>
+                </a>
+        </div>
+</div>
+    <div id="header">
+        <a href="/visit/feed">Feed</a>
+        <a href="/visit/users">Users</a>
+        <a href="/visit/profile">Profile</a>
+        <a href="/visit/input">input</a>
+        <a href="/logout">Logout</a>
+    </div>
+  <div id="cont">
+    {% for ps in posts %}
+    <div class="post">
+        <div class="img"><img src="{{ps.photo}}" alt="" class="post_img"></div>
+        <div class="caption"><p>{{ps.caption}}</p></div>
+        <a id="comments" href="/visit/cmt{{ps.id}}">COMMENTS</a>
+    
+    </div>
+
+    {% endfor %}
+
+  </div>
+</body>
+</html>

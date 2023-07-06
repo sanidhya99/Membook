@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feed</title>
+    <style>
+      
+        .post{
+            background-color: black;
+    color: white;
+    border: 8px solid #5E35B1;
+    height: 77vh;
+    display: flex;
+    width: 25vw;
+    flex-direction: column;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+        }
+        .img{
+            height: 60vh;
+    width: inherit;
+    display: flex;
+    /* background-color: greenyellow; */
+    align-items: center;
+    justify-content: center;
+        }
+        .caption{
+            height: 10vh;
+    width: inherit;
+    display: flex;
+    background-color: #4d3bec;
+    border-radius: 0vh;
+    justify-content: center;
+    font-size: 2.5vh;
+    font-family: sans-serif;
+    align-items: center;
+    color: white;
+        }
+       
+        .post_img{
+            height: 60vh;
+    width: inherit;
+        }
+        #header{
+        background-color: cornflowerblue;
+position:fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+height: 10vh;
+
+        
+    }
+    #header a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        #cont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #addition{
+            background-color: cornflowerblue;
+    height: 10vh;
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+        #addition a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        .name{
+            color: #FFC107;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    font-family: fantasy;
+        }
+        .name a{
+            color:#FFC107;
+            text-decoration: none;
+        }
+        #comments{
+            background-color: antiquewhite;
+    color: black;
+    padding: 0.5vh;
+    /* border-radius: 2vh; */
+    text-decoration: none;
+    justify-content: center;
+    display: flex;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="addition">
+        <a href="/visit/input">add posts</a>
+    </div>
+    <div id="cont">
+        {% for ps in feeds %}
+        
+        <div class="post">
+            <div class="name"><a href="/visit/{{ps.author.id}}">{{ps.author.name}}</a></div>
+            <div class="img"><img src="{{ps.photo}}" alt="" class="post_img"></div>
+            <div class="caption"><p>{{ps.caption}}</p></div>
+            <a id="comments" href="/visit/cmt{{ps.id}}">COMMENTS</a>
+        </div>
+        
+        {% endfor %}
+    </div>
+    <div id="header">
+        <a href="/visit/feed">feed</a>
+        <a href="/visit/users">People</a>
+        <a href="/visit/profile">profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>

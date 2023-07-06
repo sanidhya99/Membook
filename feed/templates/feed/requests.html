@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   #header{
+            background-color: cornflowerblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+
+            
+        }
+        #header a{
+            color: white;
+    text-decoration: none;
+    font-size: 4vh;
+    border-radius: 10vh;
+    background-color: mediumblue;
+    padding: 1vh;
+    border: 2px solid black;
+        }
+        .rst{
+            background-color: black;
+    color: white;
+    height: 13vh;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    padding: 2vh;
+    border: 8px solid #FFC107;
+    border-radius: 5vh;
+        }
+        .rst a{
+            text-decoration: none;
+    color: #FFC107;
+    font-size: 5vh;
+        }
+        .rst_cr button{
+            background-color:#FFC107 ;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <a href="/visit/feed">Feed</a>
+        <a href="/visit/users">Users</a>
+        <a href="/visit/profile">Profile</a>
+        <a href="/visit/input">input</a>
+        <a href="/logout">Logout</a>
+    </div>
+    {% if check is False %}
+    <center><h1>You Have No Buddy Request</h1></center>
+    {% else %}
+    {% for rq in requests %}
+    <form method="post" class="rst">
+        {% csrf_token %}
+        <a href="/visit/{{rq.sender.id}}">{{rq.sender}}</a>
+        <div class="rst_cr">
+
+            <label for="add{{rq.sender}}">ADD</label>
+            <input type="checkbox" name="add{{rq.sender}}" value="clicked">
+            <label for="del{{rq.sender}}">DELETE</label>
+            <input type="checkbox" name="del{{rq.sender}}" value="clicked">
+            <button type="submit">SUBMIT</button>
+        </div>
+    </form>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
